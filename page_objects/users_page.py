@@ -1,13 +1,12 @@
+import requests
 from selenium.webdriver.common.by import By
-from base_page import BasePage
-from login_page import LoginPage
-from page_objects import add_user_page
-from page_objects.add_user_page import AddUser
+from .base_page import BasePage
 
 
 class UsersPage(BasePage):
     PAGE_URL = BasePage.BASE_URL + "users"
     ADD_USER = (By.CSS_SELECTOR, "div.new-design-plus")
+    SEARCH_USER_INPUT = (By.CSS_SELECTOR, "input[name='searchUser']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -21,4 +20,22 @@ class UsersPage(BasePage):
 
     def click_new_user(self):
         self.find_element(self.ADD_USER).click()
-        self.wait_for_element_present(AddUser.AVATAR_IMG)
+
+    def get_search_response_for_new_user(self, username):
+        url = f"https://test.isi-technology.com:8000/api/v1/accounts/profile_table/?limit=20&offset=0&search={username}&search_type=user"
+        headers = {
+            "Authorization": "Token 6a2a35d809d5482a556acb870c58a9bac12fd85a",
+            "Content-Type": "application/json"
+        }
+
+        response = requests.get(url, headers=headers)
+        return response
+
+    def user_logout(self):
+        url = "https://test.isi-technology.com:8000/api/v1/account/staff_logout/"
+        headers = {
+            "Authorization": "Token 6a2a35d809d5482a556acb870c58a9bac12fd85a",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, headers=headers)
+        assert response.status_code == 200

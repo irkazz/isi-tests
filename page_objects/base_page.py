@@ -19,3 +19,6 @@ class BasePage:
 
     def wait_for_element_visible(self, locator: (By, str)) -> WebElement:
         return self.wait.until(EC.visibility_of_element_located(locator))
+
+    def wait_for_element_invisible(self, locator: (By, str)) -> WebElement:
+        return self.wait.until(EC.invisibility_of_element_located(locator))

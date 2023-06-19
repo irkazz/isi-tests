@@ -1,6 +1,5 @@
 .idea/
 page_objects/__pycache__/
-requirements.txt
 tests/__pycache__/
 utils/__pycache__/
 venv/

@@ -3,7 +3,6 @@ import sys
 
 from selenium.webdriver.common.by import By
 from page_objects.login_page import LoginPage
-from page_objects.base_page import BasePage
 
 
 from utils.webdriver_utils import WebDriverUtils
