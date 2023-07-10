@@ -79,7 +79,7 @@ class AddUser(UsersPage):
         self.find_element(self.SAVE_BUTTON).click()
         # we need to wait for page refresh, waiting for user search element should be ok
         self.wait_for_element_invisible(self.AVATAR_IMG)
-        self.wait_for_element_visible(self.users_page.SEARCH_USER_INPUT)
+        self.wait_for_element_visible(self.SEARCH_USER_INPUT)
 
     def open_add_new_user_form(self):
         self.open_page(self.login_page)

@@ -2,6 +2,7 @@ from typing import List
 
 from selenium.webdriver.common.by import By
 
+from config import BASE_URL
 from page_objects.base_page import BasePage
 
 
@@ -64,73 +65,73 @@ class NavPage(BasePage):
         # Create NavItems
         nav_item1 = create_top_item('Dashboard')
         nav_item1.sub_items = add_sub_items([
-            ("home", "Dashboard".upper(), self.BASE_URL)
+            ("home", "Dashboard".upper(), BASE_URL)
         ])
-        nav_item2 = create_top_item('Dispatching', url=self.BASE_URL + 'main')
+        nav_item2 = create_top_item('Dispatching', url=BASE_URL + 'main')
         nav_item3 = create_top_item('Orders')
         nav_item3.sub_items = add_sub_items([
-            ("order", "Today's Orders".upper(), self.BASE_URL + "orders"),
-            ("reservation", "Reservations".upper(), self.BASE_URL + "reservation"),
-            ("uploads", "Trip Import".upper(), self.BASE_URL + "uploads"),
-            ("facility", "Facilities", self.BASE_URL + "facility"),
+            ("order", "Today's Orders".upper(), BASE_URL + "orders"),
+            ("reservation", "Reservations".upper(), BASE_URL + "reservation"),
+            ("uploads", "Trip Import".upper(), BASE_URL + "uploads"),
+            ("facility", "Facilities", BASE_URL + "facility"),
         ])  # TODO: "Fsilities" title is inconsistent with others, not all upper case
 
-        nav_item4 = create_top_item('Visits', url=self.BASE_URL + 'visits')
+        nav_item4 = create_top_item('Visits', url=BASE_URL + 'visits')
         nav_item5 = create_top_item('Scheduling')
         nav_item5.sub_items = add_sub_items([
-            ("preassign-modes", "Pre-Assign Modes".upper(), self.BASE_URL + "preassign-modes"),
-            ("route", "Driver Shifts".upper(), self.BASE_URL + "shifts"),
-            ("route-import", "Shift import".upper(), self.BASE_URL + "shift-import"),
-            ("run", "Routes".upper(), self.BASE_URL + "runs"),
+            ("preassign-modes", "Pre-Assign Modes".upper(), BASE_URL + "preassign-modes"),
+            ("route", "Driver Shifts".upper(), BASE_URL + "shifts"),
+            ("route-import", "Shift import".upper(), BASE_URL + "shift-import"),
+            ("run", "Routes".upper(), BASE_URL + "runs"),
         ])
 
         nav_item6 = create_top_item('Vehicles')
         nav_item6.sub_items = add_sub_items([
-            ("vehicle", "Vehicles".upper(), self.BASE_URL + "vehicles"),
-            ("maintenance", "VEHICLE MAINTENANCE", self.BASE_URL + "maintenance"),
-            ("depot", "Base Locations".upper(), self.BASE_URL + "depots")
+            ("vehicle", "Vehicles".upper(), BASE_URL + "vehicles"),
+            ("maintenance", "VEHICLE MAINTENANCE", BASE_URL + "maintenance"),
+            ("depot", "Base Locations".upper(), BASE_URL + "depots")
         ])
 
         nav_item7 = create_top_item('Users')
         nav_item7.sub_items = add_sub_items([
-            ("user", "Users".upper(), self.BASE_URL + "users"),
-            ("hrtab", "Payroll".upper(), self.BASE_URL + "hrtab"),
-            ("group", "Driver Groups".upper(), self.BASE_URL + "groups")
+            ("user", "Users".upper(), BASE_URL + "users"),
+            ("hrtab", "Payroll".upper(), BASE_URL + "hrtab"),
+            ("group", "Driver Groups".upper(), BASE_URL + "groups")
         ])
 
         nav_item8 = create_top_item('Passengers')
         nav_item8.sub_items = add_sub_items([
-            ("client", "Passengers".upper(), self.BASE_URL + "clients"),
-            ("concern", "Concern", self.BASE_URL + "concern"),
+            ("client", "Passengers".upper(), BASE_URL + "clients"),
+            ("concern", "Concern", BASE_URL + "concern"),
             # TODO: inconsistent, not self-exploratory title, usability
-            ("eligibility", "Eligibility Import".upper(), self.BASE_URL + "eligibility")
+            ("eligibility", "Eligibility Import".upper(), BASE_URL + "eligibility")
         ])
 
         nav_item9 = create_top_item('Payers')
         nav_item9.sub_items = add_sub_items([
-            ("account", "Payers".upper(), self.BASE_URL + "accounts"),
-            ("invoice", "Billing".upper(), self.BASE_URL + "invoices"),
-            ("item", "Invoice Items".upper(), self.BASE_URL + "items")
+            ("account", "Payers".upper(), BASE_URL + "accounts"),
+            ("invoice", "Billing".upper(), BASE_URL + "invoices"),
+            ("item", "Invoice Items".upper(), BASE_URL + "items")
         ])
 
-        nav_item10 = create_top_item('Reports', url=self.BASE_URL + 'reports')
+        nav_item10 = create_top_item('Reports', url=BASE_URL + 'reports')
 
         nav_item11 = create_top_item('Settings')
         nav_item11.sub_items = add_sub_items([
-            ("setting", "SETTINGS", self.BASE_URL + "settings"),
-            ("providers_settings", "Brokers settings".upper(), self.BASE_URL + "brokers_settings")
+            ("setting", "SETTINGS",BASE_URL + "settings"),
+            ("providers_settings", "Brokers settings".upper(), BASE_URL + "brokers_settings")
         ])
 
         nav_item12 = create_top_item('Transit')
         nav_item12.sub_items = add_sub_items([
-            ("transit_dispatch", "TRANSIT / DISPATCHING", self.BASE_URL + "transit_dispatch"),
-            ("transit_scheduling", "TRANSIT / SCHEDULING", self.BASE_URL + "transit_scheduling"),
-            ("transit_route", "TRANSIT / ROUTES", self.BASE_URL + "transit_route"),
-            ("transit_stop", "TRANSIT / STOPS", self.BASE_URL + "transit_stop"),
-            ("transit_pass", "TRANSIT / PASS", self.BASE_URL + "transit_pass")
+            ("transit_dispatch", "TRANSIT / DISPATCHING", BASE_URL + "transit_dispatch"),
+            ("transit_scheduling", "TRANSIT / SCHEDULING", BASE_URL + "transit_scheduling"),
+            ("transit_route", "TRANSIT / ROUTES",  BASE_URL + "transit_route"),
+            ("transit_stop", "TRANSIT / STOPS",  BASE_URL + "transit_stop"),
+            ("transit_pass", "TRANSIT / PASS", BASE_URL + "transit_pass")
         ])
 
-        nav_item13 = create_top_item('Payments', url=self.BASE_URL + 'payments')
+        nav_item13 = create_top_item('Payments', url=BASE_URL + 'payments')
 
         # Add NavItems to NavPage
         self.nav_items.append(nav_item1)

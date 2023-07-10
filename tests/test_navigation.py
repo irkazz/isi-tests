@@ -2,35 +2,7 @@ import pytest
 
 from selenium.webdriver.common.by import By
 
-from page_objects.navigation_page import NavPage
-from page_objects.login_page import LoginPage
-
-from utils.webdriver_utils import WebDriverUtils
-
-
-@pytest.fixture(scope="module")
-def driver():
-    utils = WebDriverUtils()
-    utils.create_driver()
-    driver = utils.driver
-
-    yield driver
-    # Teardown - quit the driver after all tests in the module have finished
-    utils.quit_driver()
-
-
-@pytest.fixture
-def login_page(driver):
-    # Setup - instantiate the page_objects class
-    page = LoginPage(driver)
-    yield page
-
-
-@pytest.fixture
-def navigation_page(driver):
-    # Setup - instantiate the page_objects class
-    page = NavPage(driver)
-    yield page
+from tests.fixtures import driver, navigation_page, login_page
 
 
 @pytest.mark.navigation

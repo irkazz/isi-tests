@@ -1,0 +1,8 @@
+Test: [1m[34mtests/test_login.py::test_login_success[0m
+Outcome: [32mPASSED[0m
+Location: ('tests\\test_login.py', 13, 'test_login_success')
+---------------------------
+Test: [1m[34mtests/test_login.py::test_api_login_success[0m
+Outcome: [32mPASSED[0m
+Location: ('tests\\test_login.py', 19, 'test_api_login_success')
+---------------------------

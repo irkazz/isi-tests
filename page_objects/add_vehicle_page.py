@@ -44,12 +44,10 @@ class AddVehicle(VehiclesPage):
     VEHICLE_REGISTRATION_DATE = (datetime.now()-timedelta(days=3)).strftime("%m/%d/%Y")
     VEHICLE_PURCHASE_DATE = VEHICLE_REGISTRATION_DATE
 
-    # Common methods
     def __init__(self, driver):
         super().__init__(driver)
         self.login_page = LoginPage(driver)
 
-    # TODO: Make util or base class method
     def select_kind(self, select_text="Contractor"):
         select_element = self.find_element(self.VEHICLE_KIND_SELECT)
         select = Select(select_element)

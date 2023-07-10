@@ -1,10 +1,11 @@
-import requests
 from selenium.webdriver.common.by import By
+
+from config import BASE_PAGE_URL
 from .base_page import BasePage
 
 
 class VehiclesPage(BasePage):
-    PAGE_URL = BasePage.BASE_URL + "vehicles"
+    PAGE_URL = BASE_PAGE_URL + "vehicles"
     ADD_VEHICLE = (By.CSS_SELECTOR, "div.new-design-plus.wrapper-add_vehicle")
     SEARCH_VEHICLE_INPUT = (By.CSS_SELECTOR, "input[name='filter_search']")
 
@@ -22,14 +23,6 @@ class VehiclesPage(BasePage):
     def click_new_vehicle(self):
         self.find_element(self.ADD_VEHICLE).click()
 
-    #TODO:move common code to the base page
     def get_search_response_for_new_vehicle(self, vehicle_id):
-
-        url = f"https://test.isi-technology.com:8000/api/v1/vehicles/vehicle/?show_archived=no&search={vehicle_id}&search_type=vehicle_id&limit=20&offset=0"
-        headers = {
-            "Authorization": "Token 6a2a35d809d5482a556acb870c58a9bac12fd85a",
-            "Content-Type": "application/json"
-        }
-
-        response = requests.get(url, headers=headers)
-        return response
+        return self.api_requests.get_search_response(f"https://test.isi-technology.com:8000/api/v1/vehicles/vehicle"
+                                                     f"/?show_archived=no&search={vehicle_id}&search_type=vehicle_id&limit=20&offset=0")

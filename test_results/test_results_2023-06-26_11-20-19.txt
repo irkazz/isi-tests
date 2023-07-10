@@ -1,0 +1,57 @@
+Test: [1m[34mtests/test_login.py::test_api_login_success[0m
+Outcome: [32mPASSED[0m
+Location: ('tests\\test_login.py', 35, 'test_api_login_success')
+---------------------------
+Test: [1m[34mtests/test_add_payer.py::test_add_payer[0m
+Outcome: [31mFAILED[0m
+Stack Trace:
+add_payer_page = <page_objects.add_payer_page.AddPayer object at 0x000001D9B7DCCE90>, api_validator = <utils.validators.Validator object at 0x000001D9BA3E7D90>
+
+    @pytest.mark.payers
+    def test_add_payer(add_payer_page, api_validator):
+        add_payer_page.open_add_new_payer_form()
+>       payer_id = add_payer_page.create_new_payer()
+
+tests\test_add_payer.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+page_objects\add_payer_page.py:46: in create_new_payer
+    self.click_save_payer_button()
+page_objects\add_payer_page.py:34: in click_save_payer_button
+    self.wait_for_element_invisible(self.PAYER_ID_INPUT)
+page_objects\base_page.py:25: in wait_for_element_invisible
+    return self.wait.until(EC.invisibility_of_element_located(locator))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <selenium.webdriver.support.wait.WebDriverWait (session="9ccda39a3eff5efdc9ca24c09bf3aafc")>
+method = <function invisibility_of_element_located.<locals>._predicate at 0x000001D9B7D354E0>, message = ''
+
+    def until(self, method, message: str = ""):
+        """Calls the method provided with the driver as an argument until the \
+        return value does not evaluate to ``False``.
+    
+        :param method: callable(WebDriver)
+        :param message: optional message for :exc:`TimeoutException`
+        :returns: the result of the last call to `method`
+        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs
+        """
+        screen = None
+        stacktrace = None
+    
+        end_time = time.monotonic() + self._timeout
+        while True:
+            try:
+                value = method(self._driver)
+                if value:
+                    return value
+            except self._ignored_exceptions as exc:
+                screen = getattr(exc, "screen", None)
+                stacktrace = getattr(exc, "stacktrace", None)
+            time.sleep(self._poll)
+            if time.monotonic() > end_time:
+                break
+>       raise TimeoutException(message, screen, stacktrace)
+E       selenium.common.exceptions.TimeoutException: Message:
+
+venv\Lib\site-packages\selenium\webdriver\support\wait.py:95: TimeoutException
+Location: ('tests\\test_add_payer.py', 4, 'test_add_payer')
+---------------------------

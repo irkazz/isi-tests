@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -59,7 +57,7 @@ class AddDriverUser(AddUser):
 
     # TODO: move it to the utils class, refactor to have getResponse call
     def logout_user(self):
-        self.users_page.user_logout()
+        self.user_logout()
 
     def create_new_driver_user(self):
         self.enter_firstname()
