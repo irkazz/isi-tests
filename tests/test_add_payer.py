@@ -1,3 +1,5 @@
+import time
+
 import pytest
 
 from tests.fixtures import driver, add_payer_page, api_validator
@@ -14,7 +16,9 @@ def test_add_payer(add_payer_page, api_validator):
 
 
 @pytest.mark.payers
-def test_api_login_success(api_validator):
+def test_add_payer_api(api_validator):
     api_req = API()
-    response = api_req.create_payer_api()
-    api_validator.validate_acc_created(response)
+    # Generate timestamp
+    timestamp = str(int(time.time()))
+    response = api_req.create_payer_api(timestamp)
+    api_validator.validate_acc_created(response, timestamp)

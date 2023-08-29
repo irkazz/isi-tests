@@ -3,6 +3,7 @@ import os
 
 from colorama import Fore, Style
 
+
 def pytest_terminal_summary(terminalreporter):
     # Generate a unique filename using timestamp
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")

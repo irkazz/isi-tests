@@ -1,8 +1,10 @@
+import time
 import unittest
 
 import pytest
 
 from tests.fixtures import driver, add_passenger_page, api_validator
+from utils.api_requests import API
 
 
 @pytest.mark.passengers
@@ -12,3 +14,10 @@ def test_add_passenger( add_passenger_page, api_validator):
     response = add_passenger_page.get_search_response_for_new_passenger(last_name)
     api_validator.validate_response_count(response)
 
+@pytest.mark.payers
+def test_add_passenger_api(api_validator):
+    api_req = API()
+    # Generate timestamp
+    timestamp = str(int(time.time()))
+    response = api_req.create_passenger_api(timestamp)
+    api_validator.validate_client_created(response, timestamp)

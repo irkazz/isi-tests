@@ -1,5 +1,5 @@
 import json
-import time
+import os
 
 import requests
 
@@ -35,22 +35,25 @@ class API:
         response = requests.get(endpoint, headers=headers)
         return response
 
-    def create_payer_api(self):
+    def create_payer_api(self, timestamp):
         if self.token is None:
             self.user_login()
 
         endpoint = BASE_URL + ':8000/api/v1/accounts/account/'
 
-        # Generate timestamp
-        timestamp = str(int(time.time()))
+        # Get the current working directory
+        current_directory = os.getcwd()
+
+        # Join the current directory with the filename to get the absolute path
+        file_path = os.path.join(current_directory, 'test_data/payer.json')
 
         # Read the payload from the JSON file
-        with open('payer.json') as file:
+        with open(file_path) as file:
             payload = json.load(file)
 
         # Update the name and account_id with timestamp
-        payload['name'] += "_" + timestamp
-        payload['account_id'] += "_" + timestamp
+        payload['name'] += timestamp
+        payload['account_id'] += timestamp
 
         # Convert the payload to JSON
         json_payload = json.dumps(payload)
@@ -64,3 +67,58 @@ class API:
         # Make the POST request
         response = requests.post(endpoint, data=json_payload, headers=headers)
         return response
+
+    def create_passenger_api(self, timestamp):
+        if self.token is None:
+            self.user_login()
+
+        endpoint = BASE_URL + ':8000/api/v1/accounts/client/'
+
+        # Get the current working directory
+        current_directory = os.getcwd()
+
+        # Join the current directory with the filename to get the absolute path
+        file_path = os.path.join(current_directory, 'test_data/passenger.json')
+
+        # Read the payload from the JSON file
+        with open(file_path) as file:
+            payload = json.load(file)
+
+        # Update the name and account_id with timestamp
+        payload['first_name'] += timestamp
+        payload['last_name'] += timestamp
+
+        # Convert the payload to JSON
+        json_payload = json.dumps(payload)
+
+        # Set the request headers
+        headers = {
+            "Authorization": f"Token {self.token}",
+            "Content-Type": "application/json"
+        }
+
+        # Make the POST request
+        response = requests.post(endpoint, data=json_payload, headers=headers)
+        return response
+
+    def deactivate_object_api(self, endpoint):
+        if self.token is None:
+            self.user_login()
+
+        # Set the request headers
+        headers = {
+            "Authorization": f"Token {self.token}",
+            "Content-Type": "application/json"
+        }
+
+        # Make the DELETE request
+        response = requests.delete(endpoint, headers=headers)
+        return response
+
+    def deactivate_payer_api(self, payer_id):
+        endpoint = BASE_URL + f":8000/api/v1/accounts/account/{payer_id}/?show_inactive=yes"
+        return self.deactivate_object_api(endpoint)
+
+    def deactivate_passenger_api(self, passenger_id):
+        endpoint = BASE_URL + f":8000/api/v1/accounts/client/{passenger_id}/?show_inactive=yes"
+        return self.deactivate_object_api(endpoint)

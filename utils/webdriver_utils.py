@@ -2,11 +2,7 @@ import os
 
 from selenium import webdriver
 import selenium.webdriver.support.wait
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 
 class WebDriverUtils:
@@ -19,7 +15,9 @@ class WebDriverUtils:
 
     def create_driver(self, browser="chrome"):
         if browser == "chrome":
-            self.driver = webdriver.Chrome()
+            service = Service()
+            options = webdriver.ChromeOptions()
+            self.driver = webdriver.Chrome(service=service, options=options)
 
     def quit_driver(self):
         if self.driver:

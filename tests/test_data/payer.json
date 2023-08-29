@@ -9,7 +9,7 @@
   "allowed": 0,
   "allowed_date": null,
   "auto_send_receipt": true,
-  "balance": 0,
+  "balance": 100,
   "billable_way_to_pu_start_address": null,
   "billing_required_info": {
     "start_time": false,
@@ -33,7 +33,7 @@
   "contact_name": null,
   "contact_phone": null,
   "contact_website": null,
-  "credit": 0,
+  "credit": 10,
   "custom_ml_exceptions": [],
   "dead_miles_exceptions": [],
   "discount_amount": 0,
@@ -241,7 +241,7 @@
       "value": null
     }
   ],
-  "name": "PY_",
+  "name": "PY",
   "next_invoice": "07/09/2023",
   "odometer_reading": true,
   "pay_days": 30,

@@ -17,7 +17,6 @@ def test_login_success(login_page):
     login_page.login()
     assert login_page.wait_for_element_visible((By.CSS_SELECTOR, "img.brand-logo-img"))
 
-@pytest.mark.payers
 @pytest.mark.basic
 def test_api_login_success():
     api_req = API()
